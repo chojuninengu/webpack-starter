@@ -11,6 +11,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name][contenthash].js' ,
         clean: true, 
+        assetModuleFilename: '[name][ext]',
     },
     devtool: 'source-map',
     devServer: {
@@ -33,6 +34,20 @@ module.exports = {
                     'sass-loader',
 
                 ],
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            },
+            {
+                test: /\.(png|svg|jpg)$/i,
+                type: 'asset/resource'
             }
         ]
 
