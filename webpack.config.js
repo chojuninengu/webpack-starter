@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const historyApiFallback = require('connect-history-api-fallback')
 
 module.exports = {
     mode: 'development',
@@ -8,7 +9,19 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js'
+        filename: '[name][contenthash].js' ,
+        clean: true,
+    },
+    devtool: 'source-map',
+    devServer: {
+        static: {
+            directory: path.resolve(__dirname, 'distf')
+        },
+        port: 3000,
+        open: true ,
+        hot: true,
+        compress: true,
+        historyApiFallback:  true,
     },
     module: {
         rules: [
@@ -28,7 +41,7 @@ module.exports = {
         new HtmlWebpackPlugin ({
             title: 'WebPack App',
             filename: 'index.html',
-            template: 'template.html'
+            template: 'src/template.html',
 
         })
     ]
