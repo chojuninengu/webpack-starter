@@ -9,4 +9,15 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js'
     },
+    module: {
+        rule: [
+            {
+                test: /\.scss$/,
+                use: [
+
+                ]
+            }
+        ]
+
+    }
 }
